@@ -1,0 +1,34 @@
+version: '3'
+services:
+  turn-server:
+    # build: ./turn/
+    container_name: turn
+    image: tonyliu666/coturn
+    ports:
+      - "3478:3478/tcp"
+      - "3478:3478/udp"
+    networks:
+      - webrtc
+  react:
+    container_name: react
+    build:
+      context: ./my-app
+    # image: tonyliu666/react
+    stdin_open: true
+    environment:
+      - CI=true
+    ports:
+      - "3000:3000"
+    networks:
+      - webrtc
+  node:
+    container_name: node
+    # image: tonyliu666/node
+    build:
+      context: ./server
+    ports:
+      - "5002:5002"
+    networks:
+      - webrtc
+networks:
+    webrtc:
