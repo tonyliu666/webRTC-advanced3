@@ -4,6 +4,9 @@ const { v4: uuidv4 } = require("uuid");
 const cors = require("cors");
 const twilio = require("twilio");
 
+//set the environment variables for turn server
+require('dotenv').config();
+
 const PORT = process.env.PORT || 5002;
 // prometheus port 8001 
 const NODEPROMEPORT = 8001;
@@ -153,10 +156,11 @@ app.get("/api/get-turn-credentials", (req, res) => {
 
   // res.send({ token: null });
   const iceservers = {
-    urls: 'turn:localhost:3478',
-    username: 'tony',
-    credential: '870101',
+    urls: process.env.urls,
+    username: process.env.username,
+    credential: process.env.credential,
   }
+  console.log(iceservers);
   res.send({token:iceservers});
   // try {
   //   client.tokens.create().then((token) => {

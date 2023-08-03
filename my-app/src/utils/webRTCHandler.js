@@ -56,7 +56,7 @@ let streams = [];
 
 const getConfiguration = () => {
   const turnIceServers = getTurnIceServers();
-  console.log(turnIceServers);
+  // console.log(turnIceServers);
   if (turnIceServers) {
     return {
       iceServers: [
