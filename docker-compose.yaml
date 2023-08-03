@@ -134,7 +134,7 @@ services:
   turn-server:
     # build: ./turn/
     container_name: turn
-    image: coturn/coturn
+    image: coturn
     platform: linux/amd64
     ports:
       - "3478:3478/tcp"

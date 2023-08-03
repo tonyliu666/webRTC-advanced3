@@ -56,14 +56,15 @@ let streams = [];
 
 const getConfiguration = () => {
   const turnIceServers = getTurnIceServers();
-
+  console.log(turnIceServers);
   if (turnIceServers) {
     return {
       iceServers: [
         {
           urls: "stun:stun.l.google.com:19302",
         },
-        ...turnIceServers,
+        // ...turnIceServers,
+        turnIceServers,
       ],
     };
   } else {
@@ -196,7 +197,6 @@ const addStream = (stream, connUserSocketId) => {
   const participants = store.getState().participants;
 
   const participant = participants.find((p) => p.socketId === connUserSocketId);
-  console.log(participant);
   if (participant?.onlyAudio) {
     videoContainer.appendChild(getAudioOnlyLabel(participant.identity));
   } else {

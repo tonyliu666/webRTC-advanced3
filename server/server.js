@@ -146,21 +146,27 @@ app.get("/api/room-exists/:roomId", (req, res) => {
 });
 
 app.get("/api/get-turn-credentials", (req, res) => {
-  const accountSid = "AC7cff1792ce0f8d410f4790a5048eeeb7";
-  const authToken = "c9f5e65fe22c2e6764d5ca5530d4970c";
+  // const accountSid = "AC7cff1792ce0f8d410f4790a5048eeeb7";
+  // const authToken = "c9f5e65fe22c2e6764d5ca5530d4970c";
 
-  const client = twilio(accountSid, authToken);
+  // const client = twilio(accountSid, authToken);
 
-  res.send({ token: null });
-  try {
-    client.tokens.create().then((token) => {
-      res.send({ token });
-    });
-  } catch (err) {
-    console.log("error occurred when fetching turn server credentials");
-    console.log(err);
-    res.send({ token: null });
+  // res.send({ token: null });
+  const iceservers = {
+    urls: 'turn:localhost:3478',
+    username: 'tony',
+    credential: '870101',
   }
+  res.send({token:iceservers});
+  // try {
+  //   client.tokens.create().then((token) => {
+  //     res.send({ token });
+  //   });
+  // } catch (err) {
+  //   console.log("error occurred when fetching turn server credentials");
+  //   console.log(err);
+  //   res.send({ token: null });
+  // }
 });
 //collect message passing data from api.js SendMessagesMetrics  
 app.post("/api/messagetime", (req, res) => {
