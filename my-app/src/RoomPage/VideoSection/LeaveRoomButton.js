@@ -1,5 +1,7 @@
 import React from "react";
 
+// backto home page 
+// not so important for metrics 
 const LeaveRoomButton = () => {
   const handleRoomDisconnection = () => {
     const siteUrl = window.location.origin;

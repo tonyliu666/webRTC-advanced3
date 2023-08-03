@@ -167,6 +167,7 @@ const showLocalVideoPreview = (stream) => {
 
 const addStream = (stream, connUserSocketId) => {
   //display incoming stream
+  // and can also be zoomed in and out 
   const videosContainer = document.getElementById("videos_portal");
   const videoContainer = document.createElement("div");
   videoContainer.id = connUserSocketId;
@@ -227,6 +228,7 @@ export const toggleCamera = (isDisabled) => {
   localStream.getVideoTracks()[0].enabled = isDisabled ? true : false;
 };
 
+// here this is the matrix 
 export const toggleScreenShare = (
   isScreenSharingActive,
   screenSharingStream = null

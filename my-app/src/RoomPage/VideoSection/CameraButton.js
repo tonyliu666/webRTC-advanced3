@@ -4,6 +4,8 @@ import CameraButtonImg from "../../resources/images/camera.svg";
 import CameraButtonImgOff from "../../resources/images/cameraOff.svg";
 import * as webRTCHandler from "../../utils/webRTCHandler";
 
+// set camera not so important for metrics
+// done!
 const CameraButton = () => {
   const [isLocalVideoDisabled, setIsLocalVideoDisabled] = useState(false);
 

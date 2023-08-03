@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import SendMessageButton from "../../resources/images/sendMessageButton.svg";
 import * as webRTCHandler from "../../utils/webRTCHandler";
-
+import {SendMessagesMetrics} from "../../utils/api";
+import {trackLatency} from "../../utils/common";
 const NewMessage = () => {
   const [message, setMessage] = useState("");
 
@@ -20,7 +21,9 @@ const NewMessage = () => {
 
   const sendMessage = () => {
     if (message.length > 0) {
-      webRTCHandler.sendMessageUsingDataChannel(message);
+      const exectime = trackLatency(webRTCHandler.sendMessageUsingDataChannel(message));
+      const Message = {time:exectime,labels:"message"};
+      const returnstr = SendMessagesMetrics(Message);
       setMessage("");
     }
   };

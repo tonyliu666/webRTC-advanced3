@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
+//done! nothing for metrics
 const Message = ({ author, content, sameAuthor, messageCreatedByMe }) => {
   const alignClass = messageCreatedByMe
     ? "message_align_right"

@@ -6,6 +6,7 @@ import * as webRTCHandler from "../../utils/webRTCHandler";
 const MicButton = () => {
   const [isMicMuted, setIsMicMuted] = useState(false);
 
+  // your sound on localStream 
   const handleMicButtonPressed = () => {
     webRTCHandler.toggleMic(isMicMuted);
 

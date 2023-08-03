@@ -1,5 +1,5 @@
 import React from "react";
-
+// props doesn't matter
 const Input = ({ placeholder, value, changeHandler }) => {
   return (
     <input

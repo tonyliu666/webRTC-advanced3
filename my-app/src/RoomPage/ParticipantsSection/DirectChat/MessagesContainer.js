@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-
+//done
 const SingleMessage = ({ isAuthor, messageContent }) => {
   const messageStyling = isAuthor
     ? "author_direct_message"

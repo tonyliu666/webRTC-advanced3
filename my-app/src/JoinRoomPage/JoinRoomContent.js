@@ -11,7 +11,10 @@ import ErrorMessage from "./ErrorMessage";
 import JoinRoomButtons from "./JoinRoomButtons";
 import { useHistory } from "react-router-dom";
 import { getRoomExists } from "../utils/api";
-
+// collect metrics 
+//it's done
+import {SendMessagesMetrics} from "../utils/api";
+import {trackLatency} from "../utils/common";
 const JoinRoomContent = (props) => {
   const {
     isRoomHost,
@@ -30,8 +33,12 @@ const JoinRoomContent = (props) => {
   const handleJoinRoom = async () => {
     setIdentityAction(nameValue);
     if (isRoomHost) {
-      createRoom();
+      const exectime =trackLatency(createRoom());
+      const metrics = {time:exectime,labels:'createroom'};
+      const returnstr = SendMessagesMetrics(metrics);
     } else {
+      // it's not permitted using metrics to measure 
+      // asynchronous function
       await joinRoom();
     }
   };

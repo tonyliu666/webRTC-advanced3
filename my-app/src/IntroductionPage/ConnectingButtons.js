@@ -1,7 +1,8 @@
 import React from "react";
 import ConnectingButton from "./ConnectingButton";
 import { useHistory } from "react-router-dom";
-
+// Metrics Done!
+// turn to the other pages I think it's not so important 
 const ConnectingButtons = () => {
   let history = useHistory();
 

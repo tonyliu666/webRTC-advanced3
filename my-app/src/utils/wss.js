@@ -3,30 +3,48 @@ import { setRoomId, setParticipants, setSocketId } from "../store/actions";
 import store from "../store/store";
 import * as webRTCHandler from "./webRTCHandler";
 import { appendNewMessageToChatHistory } from "./directMessages";
+// import {functionExecutionTimeGauge} from "./prometheus"
 
-const SERVER = "http://node:5002";
+//sometimes the server would not be connected
+// const SERVER = "http://node:5002";
+const SERVER = "http://localhost:5002";
 
 let socket = null;
 
 export const connectWithSocketIOServer = () => {
   socket = io(SERVER);
-
+  
+  // prometheus create the handler for
+  // tracking socket io connection time(from client to server)
+  // TODO: 
+  // const startTime = process.hrtime(); 
   socket.on("connect", () => {
     console.log("successfully connected with socket io server");
     console.log(socket.id);
     store.dispatch(setSocketId(socket.id));
   });
-
+  // const endTime = process.hrtime(startTime);
+  // const executionTimeMs = (endTime[0] * 1000 + endTime[1] / 1e6).toFixed(2);
+  // functionExecutionTimeGauge.set(executionTimeMs);
+  
+  
+  //server.js createNewRoomHandler call this
+  //prometheus has already handled this
+  //it's done
   socket.on("room-id", (data) => {
     const { roomId } = data;
     store.dispatch(setRoomId(roomId));
   });
 
+  //server.js createNewRoomHandler call this
+  //prometheus has already handled this
+  //it's done
   socket.on("room-update", (data) => {
     const { connectedUsers } = data;
     store.dispatch(setParticipants(connectedUsers));
   });
 
+  //it's done for metrics collection
   socket.on("conn-prepare", (data) => {
     const { connUserSocketId } = data;
 
@@ -36,15 +54,18 @@ export const connectWithSocketIOServer = () => {
     socket.emit("conn-init", { connUserSocketId: connUserSocketId });
   });
 
+  //it's done
   socket.on("conn-signal", (data) => {
     webRTCHandler.handleSignalingData(data);
   });
 
+  //it's done
   socket.on("conn-init", (data) => {
     const { connUserSocketId } = data;
     webRTCHandler.prepareNewPeerConnection(connUserSocketId, true);
   });
 
+  //it's done
   socket.on("user-disconnected", (data) => {
     webRTCHandler.removePeerConnection(data);
   });

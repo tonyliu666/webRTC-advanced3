@@ -1,6 +1,6 @@
 import React from "react";
 import CheckImg from "../resources/images/check.png";
-
+// done only for props not for function 
 const OnlyWithAudioCheckbox = ({
   connectOnlyWithAudio,
   setConnectOnlyWithAudio,

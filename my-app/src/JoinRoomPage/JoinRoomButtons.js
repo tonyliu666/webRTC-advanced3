@@ -1,6 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-
+// done! I think page transfer can't be used with metrics
 const Button = ({ buttonText, cancelButton = false, onClickHandler }) => {
   const buttonClass = cancelButton
     ? "join_room_cancel_button"

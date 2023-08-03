@@ -1,19 +1,27 @@
 import React, { useState } from "react";
 import sendMessageButton from "../../../resources/images/sendMessageButton.svg";
-import * as wss from "../../../utils/wss";
+import * as webRTCHandler from "../../../utils/webRTCHandler";
+// import * as wss from "../../../utils/wss";
+import {SendMessagesMetrics} from "../../../utils/api";
 import { connect } from "react-redux";
+import {trackLatency} from "../../../utils/common";
 
-const NewMessage = ({ activeConversation, identity }) => {
+// const NewMessage = ({ activeConversation, identity }) => {
+const NewMessage = () => {
   const [message, setMessage] = useState("");
 
   const sendMessage = () => {
-    wss.sendDirectMessage({
-      receiverSocketId: activeConversation.socketId,
-      identity: identity,
-      messageContent: message,
-    });
-
-    setMessage("");
+    if (message.length > 0) {
+      const exectime = trackLatency(webRTCHandler.sendMessageUsingDataChannel(message));
+      // wss.sendDirectMessage({
+      //   receiverSocketId: activeConversation.socketId,
+      //   identity: identity,
+      //   messageContent: message,
+      // });
+      
+      const returnstr = SendMessagesMetrics(exectime);
+      setMessage("");
+    }
   };
 
   const handleTextChange = (event) => {

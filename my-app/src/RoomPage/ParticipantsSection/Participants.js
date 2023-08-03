@@ -1,7 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { setActiveConversation } from "../../store/actions";
-
+// show the participants 
+// done! not so important for metrics
 const SingleParticipant = (props) => {
   const {
     identity,

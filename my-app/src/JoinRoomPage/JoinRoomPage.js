@@ -5,6 +5,7 @@ import { setIsRoomHost } from "../store/actions";
 import JoinRoomTitle from "./JoinRoomTitle";
 import JoinRoomContent from "./JoinRoomContent";
 
+// done!
 import "./JoinRoomPage.css";
 
 const JoinRoomPage = (props) => {
