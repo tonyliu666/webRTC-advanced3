@@ -5,8 +5,6 @@ import * as webRTCHandler from "./webRTCHandler";
 import { appendNewMessageToChatHistory } from "./directMessages";
 // import {functionExecutionTimeGauge} from "./prometheus"
 
-//sometimes the server would not be connected
-// const SERVER = "http://node:5002";
 const SERVER = "http://localhost:5002";
 
 let socket = null;
