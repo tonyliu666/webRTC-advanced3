@@ -20,3 +20,22 @@ groups:
     annotations:
       summary: "Instance {{ $labels.instance }} under high load"
       description: "{{ $labels.instance }} of job {{ $labels.job }} is under high load."
+  
+  - alert: NodeExporterDown 
+    expr: up{job="node_exporter"} == 0
+    for: 1m 
+  
+  - record: job:total_videoopen_time_miliseconds:rate1m 
+    expr: rate(total_videoopen_time_miliseconds_sum[1m])/rate(total_videoopen_time_miliseconds_count[1m])
+
+  - alert: ShareScreenLittleTooLong 
+    expr: job:total_videoopen_time_miliseconds:rate1m >= 0.002
+    for: 1m 
+    labels:
+      severity: critical 
+  - alert: ShareScreenTooLong 
+    expr: job:total_videoopen_time_miliseconds:rate1m >= 0.001
+    for: 1m
+    labels:
+      severity: warning
+  

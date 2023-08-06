@@ -152,11 +152,11 @@ const showLocalVideoPreview = (stream) => {
   videoElement.autoplay = true;
   videoElement.muted = true;
   videoElement.srcObject = stream;
-
+  
   videoElement.onloadedmetadata = () => {
     videoElement.play();
   };
-
+  
   videoContainer.appendChild(videoElement);
 
   if (store.getState().connectOnlyWithAudio) {
@@ -182,7 +182,7 @@ const addStream = (stream, connUserSocketId) => {
   videoElement.onloadedmetadata = () => {
     videoElement.play();
   };
-
+  
   videoElement.addEventListener("click", () => {
     if (videoElement.classList.contains("full_screen")) {
       videoElement.classList.remove("full_screen");

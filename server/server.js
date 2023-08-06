@@ -223,7 +223,7 @@ io.on("connection", (socket) => {
     //convert to seconds
     CreateRoomTimeHistogram.observe(elapsedSeconds);
   });
-
+c
   //done
   socket.on("join-room", (data) => {
     const startTime = process.hrtime();
@@ -251,7 +251,7 @@ io.on("connection", (socket) => {
     initializeConnectionHandler(data, socket);
   });
 
-  socket.on("direct-message", (data) => {
+  socket.on("d", (data) => {
     directMessageHandler(data, socket);
   });
 });
@@ -366,6 +366,7 @@ const disconnectHandler = (socket) => {
       });
     } else {
       rooms = rooms.filter((r) => r.id !== room.id);
+      roomcounter.labels({ roomcheck: '/api/room-exists/', endpoint: room.id }).dec();
     }
   }
 };
