@@ -2,7 +2,7 @@
 ### command:
 1. cd turnserver
 2. docker build -t coturn .
-3. docker compose up -d 
+3. cd .. && docker compose up -d 
 
 frontend reactjs core functions:
 1. webRTCHandler.js handles with send messages, audio and video streaming via webrtc signaling
