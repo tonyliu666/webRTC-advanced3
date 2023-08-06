@@ -1,8 +1,10 @@
 # webRTC-dockercompose
-### command:
-1. cd turnserver
-2. docker build -t coturn .
-3. cd .. && docker compose up -d 
+#### first docker image build 
+1. cd my-app && docker build -t react .
+2. cd server && docker build -t node .
+3. cd turnserver && docker build -t turnserver
+### second execute commands:
+1. at the root folder and execute "docker compose up -d"
 
 frontend reactjs core functions:
 1. webRTCHandler.js handles with send messages, audio and video streaming via webrtc signaling
