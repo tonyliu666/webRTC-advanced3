@@ -27,4 +27,7 @@ ports:
 - 3000: grafana web ui
 - 9093: alertmanager
 
+more to-do-lists in the future:
+1. overcome the issues of the socket io connection on k8s environment by using ingress
+2. deploy on the public cloud 
 
