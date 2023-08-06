@@ -16,6 +16,13 @@ backend nodejs core functions:
 4. directMessageHandler can handle the message passing from one sender to the other receivers in the chat room
 
 
-
+port-forward all the service on the localhost:
+ports:
+- 9090: prometheus
+- 8000/metrics: frontend metrics endpoint
+- 8001/metrics: backend metrics endpoint
+- 3002: react app web ui
+- 3000: grafana web ui
+- 9093: alertmanager
 
 
